@@ -48,14 +48,14 @@ global.wait = '「 ⏱️ 」Harap tunggu...'
 global.eror = '「❗」Server ERROR!'
 global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text='
 global.watermark = '© KATEBOT' //change the watermark 
-global.image = 'https://telegra.ph/file/0bdd84bd5a8099a789828.jpg' //change the image
-global.thumbfoto = 'https://telegra.ph/file/74ee3213700db6534e59a.png'
+global.image = 'https://telegra.ph/file/0546be68d6c372833daa8.jpg' //change the image
+global.thumbfoto = 'https://telegra.ph/file/0546be68d6c372833daa8.jpg'
 
 // image
 global.bank = 'https://telegra.ph/file/d5ddf4cc627bb0e6bc420.jpg'
 global.kandang = 'https://telegra.ph/file/67a6ee607d03a4e52757d.jpg'
 global.kolam = 'https://telegra.ph/file/5aa5dfa3394477e11fb18.jpg'
-global.thanks = 'https://telegra.ph/file/01917f7782b70de8f418d.jpg'
+global.thanks = 'https://telegra.ph/file/0546be68d6c372833daa8.jpg'
 
 global.multiplier = 9999999 // Semakin tinggi, semakin sulit naik level
 
