@@ -6,10 +6,27 @@ let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
-┌─〔 R-Txzy 〕
-├ Hai, *%name!*
-├ Memory Used : *${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB*
-└────
+┏━━〔 %me 〕━⬣
+┃⬡ Hai, %name!
+┃
+┃⬡ Tersisa %limit Limit
+┃⬡ Role %role
+┃⬡ Level %level (%exp / %maxexp) 
+┃⬡ [%xp4levelup]
+┃⬡ %totalexp XP secara Total
+┃ 
+┃⬡ Hari : %week %weton 
+┃⬡ Tanggal : %date
+┃⬡ Tanggal Islam : 
+┃⬡ %dateIslamic
+┃⬡ Waktu : %time
+┃
+┃⬡ Uptime : %uptime
+┃⬡ Database : %rtotalreg dari %totalreg
+┃⬡ Memory Used : *${ramDipake}MB / ${totalram}MB*
+┃⬡ YouTube Owner :
+┃⬡ http://bit.ly/YOUTUBEKATE
+┗━━━━━━⬣
 %readmore`.trimStart(),
   header: '┌─〔 %category 〕',
   body: '├ %cmd %islimit %isPremium',
