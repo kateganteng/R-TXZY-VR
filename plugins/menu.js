@@ -4,34 +4,35 @@ let fs = require('fs')
 let path = require('path')
 let fetch = require('node-fetch')
 let moment = require('moment-timezone')
+const chats = conn.chats.all()
+const groups = chats.filter(v => v.jid.endsWith('g.us'))
 const defaultMenu = {
   before: `
-┏━━〔 %me 〕━⬣
-┃⬡ Hai, %name!
-┃
-┃⬡ Tersisa %limit Limit
-┃⬡ Role %role
-┃⬡ Level %level (%exp / %maxexp) 
-┃⬡ [%xp4levelup]
-┃⬡ %totalexp XP secara Total
-┃ 
-┃⬡ Hari : %week %weton 
-┃⬡ Tanggal : %date
-┃⬡ Tanggal Islam : 
-┃⬡ %dateIslamic
-┃⬡ Waktu : %time
-┃
-┃⬡ Uptime : %uptime
-┃⬡ Database : %rtotalreg dari %totalreg
-┃⬡ Memory Used : *${ramDipake}MB / ${totalram}MB*
-┃⬡ YouTube Owner :
-┃⬡ http://bit.ly/YOUTUBEKATE
-┗━━━━━━⬣
+╭═══════════════════════⬣
+║╭──❉ 〔 %me 〕 ❉──────
+║│➸Hai, %name!
+║│➸Tersisa *%limit Limit*
+║│➸Role *%role*
+║│➸Level *%level (%exp / %maxexp)*
+║│➸[%xp4levelup]
+║│➸%totalexp XP secara Total
+║╭──❉ 〔 Tanggal 〕 ❉──────
+║│➸Hari: *%week %weton*
+║│➸Tanggal: *%date*
+║│➸WaktuIslam:*%dateIslamic*
+║│➸Waktu: *%time*
+║╭──❉ 〔 Time 〕 ❉──────
+║│➸Uptime: *%uptime (%muptime)*
+║│➸Database: %rtotalreg dari %totalreg
+║│➸Memory Used : 
+║│➸${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+╰─────────❉
 %readmore`.trimStart(),
-  header: '┏━━〔 %category 〕━⬣',
-  body: '┃⬡%cmd %islimit %isPremium',
-  footer: '┗━━⬣\n',
+  header: '*║╭──❉ 〔%category〕*',
+  body: '║│➸%cmd %islimit %isPremium',
+  footer: '*╰───❉*\n',
   after: `
+  ⬣━〔 Powered By Kate Ganteng 〕━⬣
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
@@ -220,31 +221,42 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 			return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
                     "listMessage":  {
                         "title": `*${ucapan()}, ${name}*`.trim(),
-                        "description": `© *R-Txzy*`.trim(),
-                        "footerText": "Jika menemukan bug, error atau kesulitan dalam penggunaan silahkan laporkan/tanyakan kepada owner.",
-                        "buttonText": "*Click Here*",
+                        "description": `╭═══════════════════════
+║╭──❉ 〔 KATEBOT 〕 ❉────── 
+║│➸⏰Aktif selama ${uptime}
+║│➸⚡Baterai ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
+║│➸zifabotz
+║│➸*${conn.blocklist.length}* Terblock
+║│➸*${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* Chat Terbanned
+║│➸*${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Pengguna Terbanned
+╰─────────❉
+⬣━〔 Powered By Kate Ganteng 〕━⬣
+
+▌│█║▌║▌║║▌║▌║█│▌ `.trim(),
+                        "footerText": "©KATE-WABOT by KateGanteng",
+                        "buttonText": "MENU KATEBOT",
                         "listType": "SINGLE_SELECT",
                         "sections": [
                             {
                                 "rows": [{
-                                    "title": "Status Bot",
+                                    "title":  "|🛠️| ❯╾Status Bot╼-",
                                     "description": "Status dan informasi Bot.",
                                     "rowId": ".botstatus"
                                 }, {
-                                    "title": "Rules",
+                                    "title":      "|❗| ❯╾Rules KateBot╼-",
                                     "description": "User yang bijak selalu mematuhi Rules.",
                                     "rowId": ".rules"
                                 }, {
-                                    "title": "Sewa bot - Premium",
+                                    "title": "|💵|  ❯╾Sewa bot╼-",
                                     "description": "Untuk kamu yang ingin melihat daftar harga sewa dan premium.",
                                     "rowId": ".sewa"
                                 }],
                                 "title": "⟣─────────❲ Tentang Bot dan lainnya ❳──────────⟢"
                             }, {
                                 "rows": [{
-                                    "title": `[🧾| Semua Perintah`,
+                                    "title": `|🧾| Semua Perintah`,
                                     "description": "Memberikan Semua Fitur Bot",
-                                    "rowId": ".? all"
+                                    "rowId": ".? all",
                                 }, { 
                                     "title": "|🕋| Islam",
                                     "description": "Menu Tentang Islam",
@@ -275,7 +287,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                                     "rowId": ".? xp"
                                 }, { 
                                     "title": "|🔞| NSFW",
-                                    "description": "Menu Bokep",
+                                    "description": "Astarfirullah,Tobat Banh",
                                     "rowId": ".? nsfw"
                                 }, { 
                                     "title": "|🖼️| Random Image",
@@ -352,32 +364,36 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                                 }, { 
                                     "title": "|ℹ️| Info",
                                     "description": "Info Tentang Bot",
-                                    "rowId": ".? info"     
+                                    "rowId": ".? info"
                                 }, { 
-                                    "title": "|🧑‍💻| Owner",
+                                    "title": "|─| Tanpa Kategori",
+                                    "description": "",
+                                    "rowId": ".? tanpakategori"
+                                }, { 
+                                    "title": "|👩‍⚖️| Owner",
                                     "description": "Menu Khusu Owner",
                                     "rowId": ".? owner"
                                 }],
-                                "title": "⟣────────❲  All-Menu  ❳───────────⟢"
+                                "title": "⟣──────────────❲  All-Menu  ❳──────────────⟢"
                             }, {
                                 "rows": [{
-                                    "title": "Owner bot",
-                                    "description": "pemilik R-Txzy",
+                                    "title": "|👩‍💻| Owner ZIFABOTZ",
+                                    "description": "pemilik ZIFABOTZ",
                                     "rowId": ".owner"
                                 }, {
-                                    "title": "Donasi",
+                                    "title": "|💳| Donasi",
                                     "description": "Jangan lupa donasi untuk mendukung bot agar aktif selalu",
                                     "rowId": ".donasi"
                                 }, {
-                                    "title": "Kata penutup",
+                                    "title": "|🥀| Kata penutup",
                                     "description": "Terimakasih untuk user yang telah menggunakan bot, jika ada kesalahan atau permintaan bisa chat ke nomor owner\nNote: chat P/main² tidak akan di respon(user bisa terkena banned/block)",
                                     "rowId": ".creator"
                                 }, {
-                                    "title": "Thanks To |🎖️|",
+                                    "title": "|🙏| Thanks To",
                                     "description": "Terima kasih banyak untuk user yang telah berpartisipasi dalam bot",
                                     "rowId": ".tqto"
                                 }],
-                                "title": "⟣──────────❲ Penutup ❳────────────⟢"
+                                "title": "⟣──────────────❲ Penutup ❳───────────────⟢"
                             }
                         ], "contextInfo": 
 						{ "stanzaId": m.key.id,
@@ -500,18 +516,18 @@ function clockString(ms) {
 }
 function ucapan() {
   const time = moment.tz('Asia/Jakarta').format('HH')
-  res = "Selamat dinihari🌌"
+  res = "udah malam tidur gih •>•"
   if (time >= 4) {
-    res = "Selamat pagi🌅"
+    res = "Selamat pagi hari •>•"
   }
   if (time > 10) {
-    res = "Selamat siang🏙️"
+    res = "Selamat siang hari •>•"
   }
   if (time >= 15) {
-    res = "Selamat sore🌇"
+    res = "Selamat sore hari •>•"
   }
   if (time >= 18) {
-    res = "Selamat malam🌃"
+    res = "Selamat malam hari •>•"
   }
   return res
 }
