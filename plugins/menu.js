@@ -28,9 +28,9 @@ const defaultMenu = {
 ┃⬡ http://bit.ly/YOUTUBEKATE
 ┗━━━━━━⬣
 %readmore`.trimStart(),
-  header: '┌─〔 %category 〕',
-  body: '├ %cmd %islimit %isPremium',
-  footer: '└────\n',
+  header: '┏━━〔 %category 〕━⬣',
+  body: '┃⬡%cmd %islimit %isPremium',
+  footer: '┗━━⬣\n',
   after: `
 `,
 }
