@@ -8,7 +8,7 @@ const chats = conn.chats.all()
 const groups = chats.filter(v => v.jid.endsWith('g.us'))
 const defaultMenu = {
   before: `
-╭═══════════════════════⬣
+╭═════════════⬣
 ║╭──❉ 〔 %me 〕 ──❉
 ║│➸Hai, %name!
 ║│
@@ -23,7 +23,7 @@ const defaultMenu = {
 ║│➸WaktuIslam:*%dateIslamic*
 ║│➸Waktu: *%time*
 ║│
-║│➸Uptime: *%uptime (%muptime)*
+║│%uptime (%muptime)*
 ║│➸Database: %rtotalreg dari %totalreg
 ║│➸Memory Used : 
 ║│➸${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
@@ -223,13 +223,13 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                     "listMessage":  {
                         "title": `*${ucapan()}, ${name}*`.trim(),
                         "description": `╭═══════════════════════
-║╭──❉ 〔 KATEBOT 〕 ❉────── 
+║╭───❉ 〔 KATEBOT 〕 ───❉
 ║│➸Aktif selama ${uptime}
 ║│➸Baterai ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
 ║│➸${conn.blocklist.length} Terblock
 ║│➸${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length} Chat Terbanned
 ║│➸${Object.entries(global.db.data.users).filter(user => user[1].banned).length} Pengguna Terbanned
-╰─────── 〕
+╰────────❉
 ⬣━〔 ʙʏ ᴋᴀᴛᴇ ɢᴀɴᴛᴇɴɢ 〕━⬣
 ▌│█║▌║▌║║▌║▌║█│▌ `.trim(),
                         "footerText": "©  ᴋᴀᴛᴇɢᴀɴᴛᴇɴɢ",
