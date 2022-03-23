@@ -9,30 +9,31 @@ const groups = chats.filter(v => v.jid.endsWith('g.us'))
 const defaultMenu = {
   before: `
 ╭═══════════════════════⬣
-║╭──❉ 〔 %me 〕 ❉──────
+║╭──❉ 〔 %me 〕 ──❉
 ║│➸Hai, %name!
+║│
 ║│➸Tersisa *%limit Limit*
 ║│➸Role *%role*
 ║│➸Level *%level (%exp / %maxexp)*
 ║│➸[%xp4levelup]
 ║│➸%totalexp XP secara Total
-║╭──❉ 〔 Tanggal 〕 ❉──────
+║│
 ║│➸Hari: *%week %weton*
 ║│➸Tanggal: *%date*
 ║│➸WaktuIslam:*%dateIslamic*
 ║│➸Waktu: *%time*
-║╭──❉ 〔 Time 〕 ❉──────
+║│
 ║│➸Uptime: *%uptime (%muptime)*
 ║│➸Database: %rtotalreg dari %totalreg
 ║│➸Memory Used : 
 ║│➸${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
 ╰─────────❉
 %readmore`.trimStart(),
-  header: '*║╭──❉ 〔%category〕*',
+  header: '*║╭──❉ 〔%category〕──❉*',
   body: '║│➸%cmd %islimit %isPremium',
-  footer: '*╰───❉*\n',
+  footer: '*╰──────❉*\n',
   after: `
-  ⬣━〔 Powered By Kate Ganteng 〕━⬣
+  ⬣━〔 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋᴀᴛᴇ ɢᴀɴᴛᴇɴɢ 〕━⬣
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
@@ -225,14 +226,13 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 ║╭──❉ 〔 KATEBOT 〕 ❉────── 
 ║│➸Aktif selama ${uptime}
 ║│➸Baterai ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
-║│➸${conn.blocklist.length}* Terblock
-║│➸${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* Chat Terbanned
-║│➸${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Pengguna Terbanned
-╰─────────❉
-⬣━〔 Powered By Kate Ganteng 〕━⬣
-
+║│➸${conn.blocklist.length} Terblock
+║│➸${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length} Chat Terbanned
+║│➸${Object.entries(global.db.data.users).filter(user => user[1].banned).length} Pengguna Terbanned
+╰─────── 〕
+⬣━〔 ʙʏ ᴋᴀᴛᴇ ɢᴀɴᴛᴇɴɢ 〕━⬣
 ▌│█║▌║▌║║▌║▌║█│▌ `.trim(),
-                        "footerText": "©Kate-wabot",
+                        "footerText": "©  ᴋᴀᴛᴇɢᴀɴᴛᴇɴɢ",
                         "buttonText": "MENU KATEBOT",
                         "listType": "SINGLE_SELECT",
                         "sections": [
@@ -376,8 +376,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                                 "title": "⟣──────────────❲  All-Menu  ❳──────────────⟢"
                             }, {
                                 "rows": [{
-                                    "title": "|👩‍💻| Owner ZIFABOTZ",
-                                    "description": "pemilik ZIFABOTZ",
+                                    "title": "|👩‍💻| Owner KateGanteng",
+                                    "description": "pemilik KATEWABOT",
                                     "rowId": ".owner"
                                 }, {
                                     "title": "|💳| Donasi",
